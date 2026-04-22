@@ -1,0 +1,22 @@
+/// how put data inside database if use the docker 
+
+docker cp C:\Users\11\Downloads\dataset\customers.csv 041fe3d4d026:/var/lib/mysql-files/customers.csv
+docker cp C:\Users\11\Downloads\dataset\orders.csv 041fe3d4d026:/var/lib/mysql-files/orders.csv
+docker cp C:\Users\11\Downloads\dataset\order_items.csv 041fe3d4d026:/var/lib/mysql-files/order_items.csv
+docker cp C:\Users\11\Downloads\dataset\reviews.csv 041fe3d4d026:/var/lib/mysql-files/reviews.csv
+docker cp C:\Users\11\Downloads\dataset\products.csv 041fe3d4d026:/var/lib/mysql-files/products.csv
+
+--- enter container
+
+docker exec -it 041fe3d4d026619a0d0bdfe6777ffaf86117203c8c7a4cce7ecf2c0ff2a57900 bash  /// 041fe3d4d0 this mydocker container
+
+
+mysql -u root -p
+
+// Enter password:
+secret
+
+
+
+--- now go to visulizerdb 
+and run DDl and laod data from path in docker 
