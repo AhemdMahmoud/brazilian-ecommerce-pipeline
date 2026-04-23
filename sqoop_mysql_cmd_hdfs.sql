@@ -31,6 +31,7 @@ sqoop import \
 --password your_password \
 --table customers \
 --target-dir /user/root/ecommerce/customers \
+--as-parquetfile \
 --m 1
 
 
@@ -41,6 +42,7 @@ sqoop import \
 --password your_password \
 --table orders \
 --target-dir /user/root/ecommerce/orders \
+--as-parquetfile \
 --m 1
 
 
@@ -56,6 +58,7 @@ sqoop import \
 --password your_password \
 --table order_items \
 --target-dir /user/root/ecommerce/order_items \
+--as-parquetfile \
 --m 1 \
 --split-by order_item_id
 
@@ -67,6 +70,7 @@ sqoop import \
 --password your_password \
 --table reviews \
 --target-dir /user/root/ecommerce/reviews \
+--as-parquetfile \
 --m 1
 
 
@@ -78,6 +82,7 @@ sqoop import \
 --password your_password \
 --table products \
 --target-dir /user/root/ecommerce/products \
+--as-parquetfile \
 --m 1
 
 
