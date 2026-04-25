@@ -263,8 +263,8 @@ All services run inside Docker containers orchestrated by Docker Compose.
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/ecommerce-data-warehouse.git
-cd ecommerce-data-warehouse
+git clone https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline.git
+cd brazilian-ecommerce-pipeline
 
 # Start the full stack
 docker-compose up -d
