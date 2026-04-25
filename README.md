@@ -56,6 +56,8 @@ This project implements a **production-grade, end-to-end Big Data pipeline** bui
     2. Replace the line below with:
        ![Architecture Diagram](diagrams/architecture.png)
 -->
+![Pipeline architecture](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/diagram1.png)
+
 ![Pipeline Animation](https://raw.githubusercontent.com/AhemdMahmoud/brazilian-ecommerce-pipeline/feature/mysql-to-hdfs/pipeline_animation%20(2).gif)
 ```
 ![Pipeline Animation](https://raw.githubusercontent.com/AhemdMahmoud/brazilian-ecommerce-pipeline/feature/mysql-to-hdfs/pipeline_animation%20(2).gif)
@@ -130,7 +132,7 @@ Two different technologies were used to move data from MySQL to HDFS, demonstrat
 ### 🔴 Method 1 — Apache Sqoop (JDBC Bulk Transfer)
 
 Sqoop is the traditional, production-grade tool for RDBMS → Hadoop bulk ingestion via JDBC.
-
+![Sqoop](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/Sqoop.png)
 ```bash
 # Create HDFS target directories
 for t in customers orders order_items reviews products
@@ -197,6 +199,8 @@ sqoop import \
 NiFi provides a drag-and-drop UI to build data flows without writing code. It supports real-time and batch ingestion with built-in error handling, provenance, and backpressure.
 
 **NiFi Flow Design for this project:**
+
+![NiFi_Flow](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/nifi%20flow.png)
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -284,7 +288,7 @@ docker ps
 | Apache Spark | `spark-master` | 4040 | http://localhost:4040 |
 | Apache NiFi | `nifi` | 8443 | https://localhost:8443/nifi |
 | MySQL | `mysql` | 3306 | via DB Visualizer |
-
+![docker](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/docker_image.png)
 ### Stop Services
 
 ```bash
@@ -317,6 +321,8 @@ docker-compose down
 | Port | `10000` |
 | Database | `default` |
 | Authentication | None (or NOSASL) |
+
+![DB_Visualizer](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/db_visulizer.png)
 
 > 💡 **Tip:** After connecting, you can explore the `silver` and `gold` databases directly in the schema tree, and run analytical queries against the Gold layer Hive external tables.
 
@@ -397,6 +403,8 @@ spark-submit spark/Pipeline_pyspark.py
 # Open spark/Pipeline_pyspark.ipynb
 ```
 
+![silver_table](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/hue/silver.png)
+
 **What the Silver pipeline does:**
 
 | Table | Actions |
@@ -450,6 +458,10 @@ Silver Tables → PySpark Joins → Gold Parquet → Hive External Tables
 | `dim_reviews` | 1 row = 1 review | review_id, order_id, score, **is_positive**, date |
 | `dim_time` | 1 row = 1 order | order_id, order_date, year, month, day |
 
+
+![gold_Hdfs](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/hue/gold.png)
+![gold_hive](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/hue/customer_dim__parquet_example_hue.png)
+
 **Computed KPI columns added in Gold:**
 - `delivery_time_days` = `datediff(order_delivered_customer_date, order_purchase_timestamp)`
 - `total_price` = `price + freight_value`
@@ -468,6 +480,8 @@ source sql/gold_test.sql;
 ```
 
 ---
+![gold_hive](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/hue/gold_table_hue.png)
+
 
 ## 📊 HDFS Directory Structure
 
@@ -504,6 +518,9 @@ source sql/gold_test.sql;
 ```
 
 ---
+
+![hive_layer_schema](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/hue/hive_layer_schema.png)
+![hive_layer_schema](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/hue/store.png)
 
 ## 🔍 Hive Database Structure
 
@@ -572,6 +589,14 @@ LIMIT 10;
 | Null delivery timestamps | orders | **Preserved** — represent real-world order states |
 
 ---
+# Connect Power BI to Hive using ODBC
+#### -- 1. Install Hive ODBC Driver then config settings
+
+![A Hive ODBC driver_config](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/powerbi_connect_hive_ODBC/Ah.png)
+### Test
+![hive_layer_schema](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/powerbi_connect_hive_ODBC/hf.png)
+### Load Data from Hive
+![hive_layer_schema](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/powerbi_connect_hive_ODBC/Screenshot%202026-04-25%20212715.png)
 
 ## 📋 Prerequisites & Requirements
 
