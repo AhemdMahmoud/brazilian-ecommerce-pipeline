@@ -57,11 +57,11 @@ This project implements a **production-grade, end-to-end Big Data pipeline** bui
        ![Architecture Diagram](diagrams/architecture.png)
 -->
 ![Pipeline architecture](https://github.com/AhemdMahmoud/brazilian-ecommerce-pipeline/blob/main/images/diagram1.png)
+```
 
 ![Pipeline Animation](https://raw.githubusercontent.com/AhemdMahmoud/brazilian-ecommerce-pipeline/feature/mysql-to-hdfs/pipeline_animation%20(2).gif)
 ```
-![Pipeline Animation](https://raw.githubusercontent.com/AhemdMahmoud/brazilian-ecommerce-pipeline/feature/mysql-to-hdfs/pipeline_animation%20(2).gif)
-```
+"
 
 ---
 
