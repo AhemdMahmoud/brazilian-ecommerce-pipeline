@@ -1,0 +1,27 @@
+---docker exec -it namenode bash
+
+for t in customers orders order_items reviews products
+do
+  hdfs dfs -mkdir -p /user/root/ecommerce/$t
+done
+
+-- then exit 
+
+docker cp "C:\Users\11\Downloads\dataset\customers.csv" namenode:/root/customers.csv
+docker cp "C:\Users\11\Downloads\dataset\orders.csv" namenode:/root/orders.csv
+docker cp "C:\Users\11\Downloads\dataset\order_items.csv" namenode:/root/order_items.csv
+docker cp "C:\Users\11\Downloads\dataset\reviews.csv" namenode:/root/reviews.csv
+docker cp "C:\Users\11\Downloads\dataset\products.csv" namenode:/root/products.csv
+
+then go  to docker exec -it namenode bash -- again 
+
+--put files into hdfs 
+hdfs dfs -put /root/customers.csv /user/root/ecommerce/customers/
+
+hdfs dfs -put /root/orders.csv /user/root/ecommerce/orders/
+
+hdfs dfs -put /root/order_items.csv /user/root/ecommerce/order_items/
+
+hdfs dfs -put /root/reviews.csv /user/root/ecommerce/reviews/
+
+hdfs dfs -put /root/products.csv /user/root/ecommerce/products/
